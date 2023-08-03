@@ -1,11 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
+import "./css/App.css";
 import HomePage from "./page/public/HomePage";
 import CoworkingsPage from "./page/admin/CoworkingsPage";
 import CreateCoworkingPage from "./page/admin/CreateCoworkingPage";
 import UpdateCoworkingPage from "./page/admin/UpdateCoworkingPage";
-import LoginPage from "./page/public/LoginPage";
 import DashboardPage from "./page/admin/DashboardPage";
+//Login and Profile
+import LoginPage from "./page/public/LoginPage";
+//Public
 import CoworkingsPagePublic from "./page/public/CoworkingsPagePublic";
 
 function App() {

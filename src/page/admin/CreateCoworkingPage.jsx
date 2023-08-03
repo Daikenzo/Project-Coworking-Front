@@ -72,60 +72,53 @@ const CreateCoworkingPage = () => {
   return (
     <>
       <HeaderAdmin />
-
-      <form onSubmit={handleCreateCoworking}>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input type="text" name="name" />
+      <main className="App-main">
+        <div className="App-conainer">
+          <form className="App-form" onSubmit={handleCreateCoworking}>
+            <div className="App-nav">
+              <label htmlFor="name">Name</label>
+              <input type="text" name="name" />
+            </div>
+            <div className="App-nav">
+              <label htmlFor="superficy">Superficy</label>
+              <input type="number" name="superficy" />
+            </div>
+            <div className="App-nav">
+              <label htmlFor="capacity">Capacity</label>
+              <input type="number" name="capacity" />
+            </div>
+            <div className="App-nav">
+              <label htmlFor="price_hour">Price by hour</label>
+              <input type="number" name="price_hour" />
+            </div>
+            <div className="App-nav">
+              <label htmlFor="price_day">Price by day</label>
+              <input type="number" name="price_day" />
+            </div>
+            <div className="App-nav">
+              <label htmlFor="price_month">Price by month</label>
+              <input type="number" name="price_month" />
+            </div>
+            <div className="App-nav">
+              <label htmlFor="address_number">Address number</label>
+              <input type="number" name="address_number" />
+            </div>
+            <div className="App-nav">
+              <label htmlFor="address_street">Address street</label>
+              <input type="text" name="address_street" />
+            </div>
+            <div className="App-nav">
+              <label htmlFor="address_postcode">Address zipcode</label>
+              <input type="number" name="address_postcode" />
+            </div>
+            <div className="App-nav">
+              <label htmlFor="address_city">Address city</label>
+              <input type="text" name="address_city" />
+            </div>
+            <input type="submit" />
+          </form>
         </div>
-
-        <div>
-          <label htmlFor="superficy">Superficy</label>
-          <input type="number" name="superficy" />
-        </div>
-
-        <div>
-          <label htmlFor="capacity">Capacity</label>
-          <input type="number" name="capacity" />
-        </div>
-
-        <div>
-          <label htmlFor="price_hour">Price by hour</label>
-          <input type="number" name="price_hour" />
-        </div>
-
-        <div>
-          <label htmlFor="price_day">Price by day</label>
-          <input type="number" name="price_day" />
-        </div>
-
-        <div>
-          <label htmlFor="price_month">Price by month</label>
-          <input type="number" name="price_month" />
-        </div>
-
-        <div>
-          <label htmlFor="address_number">Address number</label>
-          <input type="number" name="address_number" />
-        </div>
-
-        <div>
-          <label htmlFor="address_street">Address street</label>
-          <input type="text" name="address_street" />
-        </div>
-
-        <div>
-          <label htmlFor="address_postcode">Address zipcode</label>
-          <input type="number" name="address_postcode" />
-        </div>
-
-        <div>
-          <label htmlFor="address_city">Address city</label>
-          <input type="text" name="address_city" />
-        </div>
-
-        <input type="submit" />
-      </form>
+      </main>
     </>
   );
 };

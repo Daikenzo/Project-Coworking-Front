@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -47,19 +47,37 @@ const LoginPage = () => {
   };
 
   return (
-    <form onSubmit={handleLoginSubmit}>
-      <div>
-        <label htmlFor="username">Username</label>
-        <input type="text" name="username" />
-      </div>
-
-      <div>
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" />
-      </div>
-
-      <input type="submit" />
-    </form>
+    <>
+      <header className="App-header">
+      <nav className="App-nav">
+        <ul>
+          <li>
+            <p><Link to={"/"}>Retour à Accueil</Link></p>
+          </li>
+          <li>
+            <p>S'inscrire</p>
+          </li>
+          <li>
+            <p></p>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main className="App-main">
+      <form className="App-container App-form login" onSubmit={handleLoginSubmit}>
+        <div className="App-nav">
+          <label htmlFor="username">Username </label>
+          <input type="text" name="username" />
+        </div>
+        <div className="App-nav">
+          <label htmlFor="password">Password </label>
+          <input type="password" name="password" />
+        </div>
+        <input className="App-container App-btn" type="submit" />
+      </form>
+    </main>
+    </>
+    
   );
 };
 

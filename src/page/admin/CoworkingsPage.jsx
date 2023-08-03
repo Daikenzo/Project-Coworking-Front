@@ -35,12 +35,12 @@ const CoworkingsPage = () => {
 
     // on décode le jwt
     const user = jwtDecode(jwt);
-
+    console.log(user)
     // on vérifie son rôle :
     // s'il a un role admin ou editor,
     // on le redirige vers l'accueil admin
     if (user.data.role === 3 || user.data.role === 2) {
-      navigate("/admin");
+      // navigate("/admin");
       // sinon on le redirige vers l'accueil public
     } else {
       navigate("/");
@@ -67,21 +67,23 @@ const CoworkingsPage = () => {
   return (
     <>
       <HeaderAdmin />
-      <div>
-        <h1>Liste des coworkings</h1>
-        {deleteCoworkingMessage && <p>{deleteCoworkingMessage}</p>}
-        {coworkings.map((coworking) => (
-          <div key={coworking.id}>
-            <h2>{coworking.name}</h2>
-            <p>
-              Adresse :{coworking.address.number} {coworking.address.street} - {coworking.address.postcode}
-              {coworking.address.city}
-            </p>
-            <Link to={`/admin/coworkings/${coworking.id}/update`}>Mettre à jour le coworking</Link>
-            <button onClick={() => handleDeleteCoworking(coworking.id)}>Supprimer le coworking</button>
-          </div>
-        ))}
-      </div>
+      <main className="App-main">
+        <div>
+          <h1>Liste des coworkings</h1>
+          {deleteCoworkingMessage && <p>{deleteCoworkingMessage}</p>}
+          {coworkings.map((coworking) => (
+            <div key={coworking.id}>
+              <h2>{coworking.name}</h2>
+              <p>
+                Adresse :{coworking.address.number} {coworking.address.street} - {coworking.address.postcode}
+                {coworking.address.city}
+              </p>
+              <Link to={`/admin/coworkings/${coworking.id}/update`}>Mettre à jour le coworking</Link>
+              <button onClick={() => handleDeleteCoworking(coworking.id)}>Supprimer le coworking</button>
+            </div>
+          ))}
+        </div>
+      </main>
     </>
   );
 };

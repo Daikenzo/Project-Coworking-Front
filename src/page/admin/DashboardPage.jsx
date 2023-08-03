@@ -15,8 +15,14 @@ const DashboardPage = () => {
   return (
     <>
       <HeaderAdmin />
-
-      <h2>Bonjour, Vous êtes sur le dashboard</h2>
+      <main className="App-main">
+        <div className="App-container">
+          <h1>DASHBOARD</h1>
+          <div>
+            <p>Bonjour, vous êtes dans le Dashboard</p>
+          </div>
+        </div>
+      </main>
     </>
   );
 };

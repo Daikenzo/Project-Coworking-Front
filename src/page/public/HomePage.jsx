@@ -1,7 +1,15 @@
 import React from "react";
+import HeaderPublic from "../../component/public/HeaderPublic"
 
 const HomePage = () => {
-  return <p>HomePage</p>;
+  return (
+    <>
+      <HeaderPublic />
+      <main className="App-main">
+        <p>HomePage</p>
+      </main>
+    </>
+);
 };
 
 export default HomePage;
