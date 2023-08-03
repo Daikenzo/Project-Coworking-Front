@@ -11,6 +11,7 @@ const CoworkingsPage = () => {
   const navigate = useNavigate();
 
   const fetchCoworkings = async () => {
+    console.log("fetch")
     const response = await fetch("http://localhost:3010/api/coworkings", {
       method: "GET",
     });
@@ -25,6 +26,7 @@ const CoworkingsPage = () => {
   // la variable deleteCoworkingMessage est modifiée
   useEffect(() => {
     // on récupère le token jwt en cookie
+    console.log("coworkingpage")
     const jwt = Cookies.get("jwt");
 
     // s'il existe pas, ça veut que l'utilisateur n'est pas connecté
@@ -51,7 +53,6 @@ const CoworkingsPage = () => {
 
   const handleDeleteCoworking = async (coworkingId) => {
     const token = Cookies.get("jwt");
-
     const responseDelete = await fetch(`http://localhost:3010/api/coworkings/${coworkingId}`, {
       method: "DELETE",
       headers: {

@@ -2,13 +2,20 @@ import { useNavigate } from "react-router-dom";
 import HeaderAdmin from "../../component/admin/HeaderAdmin";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
+import jwtDecode from "jwt-decode";
 
 const CreateCoworkingPage = () => {
   const navigate = useNavigate();
+  //Check Token
+  const token = Cookies.get("jwt");
+  const user = token? (jwtDecode(token)) : (null);
 
   // appelé au submit du formulaire
   const handleCreateCoworking = async (event) => {
     event.preventDefault();
+
+
+    
 
     // on récupère les infos du form
     const name = event.target.name.value;
@@ -21,6 +28,7 @@ const CreateCoworkingPage = () => {
     const address_street = event.target.address_street.value;
     const address_postcode = event.target.address_postcode.value;
     const address_city = event.target.address_city.value;
+    const UserId = user? user.UserId : 0;
 
     // on construit l'ojet coworking tel qu'il est attendu par l'api
     const coworkingData = {
@@ -37,7 +45,7 @@ const CreateCoworkingPage = () => {
         street: address_street,
         postCode: parseInt(address_postcode),
         city: address_city,
-      },
+      }
     };
 
     // on fait l'appel à l'api

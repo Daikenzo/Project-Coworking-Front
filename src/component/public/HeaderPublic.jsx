@@ -23,6 +23,9 @@ const HeaderPublic = () => {
           <li>
             <Link to={"/"}>Accueil</Link>
           </li>
+          <li>
+            <Link to={"/coworkings"}>Liste des coworkings</Link>
+          </li>
           {userData? (<>
           <li>
             <p>Page de {userData.data.username}</p>
