@@ -15,7 +15,7 @@ const CreateCoworkingPage = () => {
     event.preventDefault();
 
 
-    
+    console.log('test')
 
     // on récupère les infos du form
     const name = event.target.name.value;
@@ -48,6 +48,14 @@ const CreateCoworkingPage = () => {
       }
     };
 
+    // Génération clé json pour les données du formulaire
+    const formData = new FormData();
+    formData.append("image", event.target.image.files[0]);
+    formData.append("data", JSON.stringify(coworkingData));
+
+
+ 
+
     // on fait l'appel à l'api
     // avec une requête POST
     // en lui passant les données du coworking
@@ -56,17 +64,19 @@ const CreateCoworkingPage = () => {
 
     const token = Cookies.get("jwt");
 
-    const responseCreate = await fetch("http://localhost:3010/api/coworkings", {
+    const responseCreate = await 
+    fetch("http://localhost:3010/api/coworkings/withImg", {
       method: "POST",
-      body: JSON.stringify(coworkingData),
+      body: formData,
       headers: {
-        "Content-Type": "application/json",
+      //  "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     });
 
     const responseCreateJs = await responseCreate.json();
-
+    // Test 
+    console.log(responseCreateJs);
     // on redirige vers la liste des coworkings
     navigate("/admin/coworkings");
   };
@@ -123,7 +133,14 @@ const CreateCoworkingPage = () => {
               <label htmlFor="address_city">Address city</label>
               <input type="text" name="address_city" />
             </div>
-            <input type="submit" />
+            <div className="App-nav">
+              <label htmlFor="image">Image de Présentation : </label>
+              <input type="file" name="image" />
+            </div>
+            <div>
+              <input type="submit" />
+            </div>
+            
           </form>
         </div>
       </main>

@@ -79,6 +79,13 @@ const CoworkingsPagePublic = () => {
                 Adresse :{coworking.address.number} {coworking.address.street} - {coworking.address.postcode}
                 {coworking.address.city}
               </p>
+              {coworking.Reviews.map((review) => (
+              <div key={review.id}>
+                <p>{review.content}</p>
+                <p>{review.rating}</p>
+              </div>
+            ))}
+
               {isUserConnected && (
                 <form className="App-container App-form" onSubmit={(event) => handleCreateReview(event, coworking.id)}>
                   <div className="App-container App-form App-nav">

@@ -79,6 +79,12 @@ const CoworkingsPage = () => {
                 Adresse :{coworking.address.number} {coworking.address.street} - {coworking.address.postcode}
                 {coworking.address.city}
               </p>
+              <div className="App-container App-container">
+                {coworking.picture && (
+                <img className="App-image-container" src={coworking.picture} alt={coworking.name} />
+                )}
+              </div>
+              
               <Link to={`/admin/coworkings/${coworking.id}/update`}>Mettre à jour le coworking</Link>
               <button onClick={() => handleDeleteCoworking(coworking.id)}>Supprimer le coworking</button>
             </div>
