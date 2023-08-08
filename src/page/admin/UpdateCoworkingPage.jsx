@@ -124,7 +124,7 @@ const UpdateCoworkingPage = () => {
               <label htmlFor="address_city">Address city</label>
               <input type="text" name="address_city" defaultValue={coworking && coworking.address.city} />
             </div>
-            <input type="submit" />
+            <input className="App-form App-btn" type="submit" />
           </form>
         </div>
       </main>

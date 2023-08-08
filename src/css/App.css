@@ -53,6 +53,8 @@
   .App-container, .App-container > *:first-child{
     width: max-content;
     align-items:first baseline;
+    display:flex;
+    flex-direction: column;
   
   }
   .App-nav, .App-nav ul{
@@ -87,11 +89,32 @@
   .App-link {
     color: #61dafb;
   }
-  .Btn{
+  .App-form{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+
+  }
+  .App-form *:first-child{
+    flex-direction: row;
+    align-items: center;
+    align-content: space-between;
+  }
+  .App-form * input{
+    margin-left: 5px;
+  }
+  
+  .App-Btn, .Btn{
     text-decoration: none;
     color: black;
     cursor: pointer;
+    display: grid;
+    margin: auto;
   }
+  .App-form > .App-Btn{
+    margin: auto;
+}
   
   @keyframes App-logo-spin {
     from {

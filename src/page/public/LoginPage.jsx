@@ -65,15 +65,15 @@ const LoginPage = () => {
     </header>
     <main className="App-main">
       <form className="App-container App-form login" onSubmit={handleLoginSubmit}>
-        <div className="App-nav">
-          <label htmlFor="username">Username </label>
-          <input type="text" name="username" />
-        </div>
-        <div className="App-nav">
-          <label htmlFor="password">Password </label>
-          <input type="password" name="password" />
-        </div>
-        <input className="App-container App-btn" type="submit" />
+          <div className="App-nav">
+            <label htmlFor="username">Username:</label>
+            <input type="text" name="username"/>
+          </div>
+          <div className="App-nav">
+            <label htmlFor="password">Password: </label>
+            <input type="password" name="password" />
+          </div>
+          <input className="App-container App-nav App-btn" type="submit" />
       </form>
     </main>
     </>

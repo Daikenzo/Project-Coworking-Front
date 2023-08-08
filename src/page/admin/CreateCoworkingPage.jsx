@@ -6,18 +6,12 @@ import jwtDecode from "jwt-decode";
 
 const CreateCoworkingPage = () => {
   const navigate = useNavigate();
-  //Check Token
+  //Check Token & Init
   const token = Cookies.get("jwt");
   const user = token? (jwtDecode(token)) : (null);
-
-  // appelé au submit du formulaire
+  // Form Submit function
   const handleCreateCoworking = async (event) => {
     event.preventDefault();
-
-
-    console.log('test')
-
-    // on récupère les infos du form
     const name = event.target.name.value;
     const superficy = event.target.superficy.value;
     const capacity = event.target.capacity.value;
@@ -29,8 +23,7 @@ const CreateCoworkingPage = () => {
     const address_postcode = event.target.address_postcode.value;
     const address_city = event.target.address_city.value;
     const UserId = user? user.UserId : 0;
-
-    // on construit l'ojet coworking tel qu'il est attendu par l'api
+    // Set Coworking Data
     const coworkingData = {
       name: name,
       price: {
@@ -47,23 +40,12 @@ const CreateCoworkingPage = () => {
         city: address_city,
       }
     };
-
     // Génération clé json pour les données du formulaire
     const formData = new FormData();
     formData.append("image", event.target.image.files[0]);
     formData.append("data", JSON.stringify(coworkingData));
-
-
- 
-
-    // on fait l'appel à l'api
-    // avec une requête POST
-    // en lui passant les données du coworking
-    // en json dans la clé "body"
-    // on précise qu'on envoie un json, via le header
-
+    // Get JWT Token and Fetch (With Header Authorization) and stock JSon
     const token = Cookies.get("jwt");
-
     const responseCreate = await 
     fetch("http://localhost:3010/api/coworkings/withImg", {
       method: "POST",
@@ -73,20 +55,18 @@ const CreateCoworkingPage = () => {
         Authorization: `Bearer ${token}`,
       },
     });
-
     const responseCreateJs = await responseCreate.json();
-    // Test 
-    console.log(responseCreateJs);
-    // on redirige vers la liste des coworkings
+    // Test  console.log(responseCreateJs);
+    // Redirect into Coworking Page
     navigate("/admin/coworkings");
   };
-
+// Redirect if not Token Cookie
   useEffect(() => {
     if (!Cookies.get("jwt")) {
       navigate("/login");
     }
   }, []);
-
+// Display
   return (
     <>
       <HeaderAdmin />
@@ -137,10 +117,7 @@ const CreateCoworkingPage = () => {
               <label htmlFor="image">Image de Présentation : </label>
               <input type="file" name="image" />
             </div>
-            <div>
-              <input type="submit" />
-            </div>
-            
+            <div><input type="submit" /></div>
           </form>
         </div>
       </main>

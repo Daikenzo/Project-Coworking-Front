@@ -5,66 +5,50 @@ import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 
 const CoworkingsPage = () => {
+  // Init
   const [coworkings, setCoworkings] = useState([]);
   const [deleteCoworkingMessage, setDeleteCoworkingMessage] = useState(null);
-
   const navigate = useNavigate();
-
+  // Fetch
   const fetchCoworkings = async () => {
     console.log("fetch")
     const response = await fetch("http://localhost:3010/api/coworkings", {
       method: "GET",
     });
     const responseJs = await response.json();
-
     setCoworkings(responseJs.data);
   };
-
-  // useEffect avec la variable deleteCoworkingMessage
-  // dans le tableau, permet de dire qu'on executer
-  // la fonction fetchCoworkings à chaque fois que
-  // la variable deleteCoworkingMessage est modifiée
+  // React Reload Page (UseEffect) on Starttup and Delete Page
   useEffect(() => {
-    // on récupère le token jwt en cookie
+    // Set JWT Cookie into Browser
     console.log("coworkingpage")
     const jwt = Cookies.get("jwt");
-
-    // s'il existe pas, ça veut que l'utilisateur n'est pas connecté
-    // on le redirige vers la page de login
-    if (!jwt) {
-      navigate("/login");
-    }
-
+    // Redirect to LoginPage if missing JWT
+    if (!jwt) { navigate("/login");}
     // on décode le jwt
     const user = jwtDecode(jwt);
-    console.log(user)
-    // on vérifie son rôle :
-    // s'il a un role admin ou editor,
-    // on le redirige vers l'accueil admin
+    // User Role Verification
     if (user.data.role === 3 || user.data.role === 2) {
-      // navigate("/admin");
-      // sinon on le redirige vers l'accueil public
+      // is a Admin or Editor
     } else {
       navigate("/");
     }
-
     fetchCoworkings();
-  }, [deleteCoworkingMessage]);
-
+  }, [deleteCoworkingMessage, navigate]);
+// Delete Coworking ActionClick & Function
   const handleDeleteCoworking = async (coworkingId) => {
     const token = Cookies.get("jwt");
-    const responseDelete = await fetch(`http://localhost:3010/api/coworkings/${coworkingId}`, {
+    const responseDelete = await 
+    fetch(`http://localhost:3010/api/coworkings/${coworkingId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-
     const responseDeleteJs = await responseDelete.json();
-
     setDeleteCoworkingMessage(responseDeleteJs.message);
   };
-
+// Display
   return (
     <>
       <HeaderAdmin />
@@ -84,7 +68,6 @@ const CoworkingsPage = () => {
                 <img className="App-image-container" src={coworking.picture} alt={coworking.name} />
                 )}
               </div>
-              
               <Link to={`/admin/coworkings/${coworking.id}/update`}>Mettre à jour le coworking</Link>
               <button onClick={() => handleDeleteCoworking(coworking.id)}>Supprimer le coworking</button>
             </div>
@@ -94,5 +77,4 @@ const CoworkingsPage = () => {
     </>
   );
 };
-
 export default CoworkingsPage;
