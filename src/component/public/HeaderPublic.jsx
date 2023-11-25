@@ -10,11 +10,10 @@ const HeaderPublic = () => {
 
     navigate("/login");
   };
-
   const jwt = Cookies.get("jwt");
 
-  const userData = jwt? (jwtDecode(jwt)) : (null);
-
+  const userData = jwt? (jwtDecode(jwt)) :  (null);
+  
 
   return (
     <header className="App-header">
