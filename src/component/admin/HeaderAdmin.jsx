@@ -31,7 +31,7 @@ const HeaderAdmin = () => {
             <p>Connecté en tant que <span>{userData.data.username}</span></p>
           </li>
           <li>
-            <a href="#" onClick={handleLogout}>
+            <a href="#disconect" onClick={handleLogout}>
               Se déconnecter
             </a>
           </li>

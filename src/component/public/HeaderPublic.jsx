@@ -14,7 +14,6 @@ const HeaderPublic = () => {
 
   const userData = jwt? (jwtDecode(jwt)) :  (null);
   
-
   return (
     <header className="App-header">
       <nav className="App-nav">
