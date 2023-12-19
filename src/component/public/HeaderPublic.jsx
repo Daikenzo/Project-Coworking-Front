@@ -1,13 +1,15 @@
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import { Link, useNavigate } from "react-router-dom";
+import '../../css/header.css'
 
 const HeaderPublic = () => {
+  console.log("header")
   const navigate = useNavigate();
 
   const handleLogout = () => {
     Cookies.remove("jwt");
-
+    
     navigate("/login");
   };
   const jwt = Cookies.get("jwt");
@@ -16,7 +18,7 @@ const HeaderPublic = () => {
   
   return (
     <header className="App-header">
-      <nav className="App-nav">
+      <nav className="App-nav header-nav">
         <ul>
           <li>
             <Link to={"/"}>Accueil</Link>

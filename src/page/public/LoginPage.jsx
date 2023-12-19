@@ -1,15 +1,28 @@
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  // Set Default State
+  const [loginError, setLoginError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("Mot de passe ou identifiant incorrect")
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
 
     const username = event.target.username.value;
     const password = event.target.password.value;
+
+    // Verification Empty form - return error if empty
+    if (username === '' || password === '') {
+      setErrorMessage("Les champs ne peux pas être vide")
+      return setLoginError(true)
+  } else {
+      setErrorMessage("Mot de passe ou identifiant incorrect")
+      setLoginError(false)
+  }
 
     const loginResponse = await fetch("http://localhost:3010/api/users/login", {
       method: "POST",
@@ -43,13 +56,15 @@ const LoginPage = () => {
       } else {
         navigate("/");
       }
+    } else{
+      setLoginError(true)
     }
   };
 
   return (
     <>
       <header className="App-header">
-      <nav className="App-nav">
+      <nav className="App-nav header-nav">
         <ul>
           <li>
             <p><Link to={"/"}>Retour à Accueil</Link></p>
@@ -75,6 +90,9 @@ const LoginPage = () => {
           </div>
           <input className="App-container App-nav App-btn" type="submit" />
       </form>
+      {loginError && (
+                        <div className="error container text-bg-danger text-center">{errorMessage}</div>
+                    )}
     </main>
     </>
     
